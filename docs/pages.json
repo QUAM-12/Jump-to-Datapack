@@ -1,0 +1,95 @@
+[
+  {
+    "id": "welcome",
+    "title": "환영합니다.",
+    "path": "welcome.md",
+    "children": [
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "01",
+    "title": "제1 장 데이터 팩이란 무엇인가?",
+    "path": "01/1.md",
+    "children": [
+      {
+        "id": "01-1",
+        "title": "01-1 데이터 팩이란?",
+        "path": "01/1.md"
+      },
+      {
+        "id": "01-2",
+        "title": "01-2 데이터 팩의 특징",
+        "path": "01/2.md"
+      },
+      {
+        "id": "01-3",
+        "title": "01-3 데이터 팩 만들기",
+        "path": "01/3.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "title": "제2 장 함수의 기초",
+    "path": "02/1.md",
+    "children": [
+      {
+        "id": "02-1",
+        "title": "02-1 함수란?",
+        "path": "02/1.md"
+      },
+      {
+        "id": "02-2",
+        "title": "02-2 함수의 load와 tick",
+        "path": "02/2.md"
+      },
+      {
+        "id": "02-3",
+        "title": "02-3 함수의 반환",
+        "path": "02/3.md"
+      },
+      {
+        "id": "02-4",
+        "title": "02-4 재귀함수",
+        "path": "02/4.md"
+      },
+      {
+        "id": "02-5",
+        "title": "02-5 함수의 지연",
+        "path": "02/5.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "title": "제3 장 술어의 기초",
+    "path": "03/1.md",
+    "children": [
+      {
+        "id": "03-1",
+        "title": "03-1 술어란?",
+        "path": "03/1.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  }
+]
