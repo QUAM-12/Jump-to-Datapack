@@ -86,6 +86,50 @@
         "path": "03/1.md"
       },
       {
+        "id": "03-2",
+        "title": "03-2 all_of",
+        "path": "03/2.md"
+      },
+      {
+        "id": "03-3",
+        "title": "03-3 any_of",
+        "path": "03/3.md"
+      },
+      {
+        "id": "03-4",
+        "title": "03-4 entity_properties",
+        "path": "03/4.md",
+        "children": [
+          {
+            "id": "03-4-1",
+            "title": "03-4-1 properties",
+            "path": "03/4-1.md"
+          }
+        ]
+      },
+      {
+        "id": "03-5",
+        "title": "03-5 inverted",
+        "path": "03/5.md"
+      },
+      {
+        "id": "03-6",
+        "title": "03-6 location_check",
+        "path": "03/6.md",
+        "children": [
+          {
+            "id": "03-6-1",
+            "title": "03-6-1 locations",
+            "path": "03/6-1.md"
+          }
+        ]
+      },
+      {
+        "id": "03-7",
+        "title": "03-7 weather_check",
+        "path": "03/7.md"
+      },
+      {
         "id": "null",
         "title": "",
         "path": "null.md"
