@@ -1,0 +1,251 @@
+@font-face {
+   font-family: 'PyeongChang-Bold';
+   src: url('/fonts/PyeongChang-Bold.woff2') format('woff2');
+   font-weight: 700;
+   font-style: normal
+}
+
+@font-face {
+   font-family: 'D2Coding';
+   src: url('/fonts/D2Coding.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+}
+
+:root {
+   --accent: #4f46e5;
+   --bg: #0f172a;
+   --card: #0b1220;
+   --muted: #94a3b8;
+   color-scheme: dark
+}
+
+* {
+   box-sizing: border-box
+}
+
+html,
+body {
+   height: 100%;
+   margin: 0;
+   font-family: 'PyeongChang-Bold', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+   color: #d7dce2;
+   background: linear-gradient(180deg, #071025 0%, #07112a 100%);
+}
+
+.app {
+   display: grid;
+   grid-template-columns: 260px 1fr;
+   gap: 18px;
+   padding: 18px;
+   height: 100vh;
+   width: 100%;
+}
+
+.sidebar {
+   background: linear-gradient(to bottom,
+         rgba(255, 255, 255, 0.01),
+         rgba(255, 255, 255, 0.1));
+   border-radius: 12px;
+   padding: 14px;
+   overflow: auto
+}
+
+.brand {
+   font-weight: 700;
+   color: var(--muted);
+   margin-bottom: 12px
+}
+
+.search {
+   display: flex;
+   margin-bottom: 16px
+}
+
+.search input {
+   flex: 1;
+   padding: 8px;
+   border-radius: 8px;
+   border: 1px solid rgba(255, 255, 255, 0.04);
+   background: transparent;
+   color: inherit
+}
+
+.pages {
+   display: flex;
+   flex-direction: column;
+   gap: 6px
+}
+
+.child-pages {
+   margin-left: 16px;
+   border-left: 1px solid rgba(255, 255, 255, 0.1);
+   padding-left: 8px;
+}
+
+.page {
+   padding: 8px;
+   border-radius: 8px;
+   cursor: pointer
+}
+
+.page:hover {
+   background: rgba(255, 255, 255, 0.2)
+}
+
+.page.active {
+   background: linear-gradient(90deg, rgba(79, 70, 229, 0.15), rgba(79, 70, 229, 0.06));
+   border-left: 3px solid var(--accent);
+   padding-left: 6px
+}
+
+.content {
+   padding: 22px;
+   overflow: auto
+}
+
+.card {
+   background: rgba(255, 255, 255, 0.02);
+   padding: 18px;
+   border-radius: 12px;
+   max-width: 100%
+}
+
+/* 파일 title */
+.meta {
+   display: flex;
+   gap: 12px;
+   align-items: center;
+   margin-bottom: 12px
+}
+
+.btn {
+   padding: 8px 10px;
+   border-radius: 8px;
+   border: none;
+   background: var(--accent);
+   color: white;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   /* 부드러운 효과 추가 */
+}
+
+.btn:hover {
+   background: rgba(79, 70, 229, 0.7);
+   /* 살짝 투명해진 색으로 변경 */
+}
+
+/* markdown styles */
+.md h1 {
+   font-size: 28px;
+   margin: 12px 0
+}
+
+.md h2 {
+   font-size: 20px;
+   margin: 10px 0
+}
+
+.md p {
+   line-height: 1.6;
+   color: #cfe6ff
+}
+
+.link-with-icon:hover {
+   opacity: 0.7;
+}
+
+.link-with-icon {
+   display: inline-block;
+   vertical-align: middle;
+   text-decoration: underline;
+   color: rgb(185, 181, 255);
+   transition: opacity 0.2s ease;
+   line-height: 2.0;
+}
+
+.link-with-icon img {
+   width: 20px;
+   height: 20px;
+   margin-right: 6px;
+   vertical-align: middle;
+   display: inline-block;
+}
+
+/* 인라인 코드 스타일 */
+code {
+   background: rgba(135, 131, 120, 0.15);
+   color: rgba(255, 131, 120, 0.95);
+   padding: 0.2em 0.4em;
+   border-radius: 6px;
+   font-family: 'D2Coding', monospace;
+   font-size: 0.9em;
+}
+
+/* 코드 블록 스타일 */
+pre {
+   background: rgba(135, 131, 120, 0.15);
+   padding: 1em;
+   border-radius: 8px;
+   overflow-x: auto;
+   font-family: 'D2Coding', monospace;
+   font-size: 1em;
+   color: inherit;
+   /* 텍스트 색 유지 */
+}
+
+pre code {
+   background: none;
+   padding: 0;
+   border-radius: 0;
+   display: block;
+   white-space: pre;
+}
+
+/* responsive */
+.menu-toggle {
+   display: none;
+   /* 기본 숨김 */
+   position: fixed;
+   top: 12px;
+   left: 12px;
+   background: var(--accent);
+   color: white;
+   border: none;
+   padding: 8px 12px;
+   border-radius: 6px;
+   cursor: pointer;
+   z-index: 1000;
+   /* 사이드바 위에 나오게 */
+   user-select: none;
+   font-size: 18px;
+   line-height: 1;
+}
+
+@media (max-width: 800px) {
+   .app {
+      grid-template-columns: 1fr;
+   }
+
+   .sidebar {
+      position: fixed;
+      left: 0;
+      top: 56px;
+      bottom: 0;
+      width: 260px;
+      transform: translateX(-320px);
+      transition: transform 0.25s ease-in-out;
+      background: rgba(11, 18, 32, 0.95);
+      /* 배경 덮어쓰기 권장 */
+      z-index: 999;
+      overflow-y: auto;
+   }
+
+   .sidebar.open {
+      transform: translateX(0);
+   }
+
+   .menu-toggle {
+      display: inline-block;
+   }
+}

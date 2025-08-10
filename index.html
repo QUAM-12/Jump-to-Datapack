@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>점프 투 데이터 팩</title>
+  <link rel="icon" href="assets/img/jump.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+
+  <link rel="stylesheet" href="javascript-Syntax-Highlighter-for-Minecraft-functions-master/code.css" />
+</head>
+
+<body>
+  <button class="menu-toggle">☰ Menu</button>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/img/jump.png" width="16px" height="16px" alt="점프 투 데이터 팩 로고" />
+        <span>점프 투 데이터 팩</span>
+      </div>
+
+      <div class="search"><input id="q" placeholder="검색 혹은 타이틀로 이동" /></div>
+      <div class="pages" id="pages"></div>
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">Tip: pages.json 파일에 문서 목록을 추가한 뒤 .md 파일을 docs/에
+        넣으세요.</div>
+    </aside>
+
+    <main class="content">
+      <div class="card">
+        <div class="meta">
+          <button class="btn" id="homeBtn">Home</button>
+          <div id="crumb" style="color:var(--muted)"></div>
+          <div style="flex:1"></div>
+        </div>
+        <article class="md" id="article">
+
+        </article>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="javascript-Syntax-Highlighter-for-Minecraft-functions-master/mcfunction.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+.mcfunction {
+   color: #99a1b0;
+}
+
+.mcfunction .keyword {
+   color: #d579e3;
+}
+
+.mcfunction .selector {
+   color: #63ac98;
+}
+
+.mcfunction .selectorProperties {
+   color: #4196b7;
+}
+
+.mcfunction .not {
+   color: #d05d5d;
+}
+
+.mcfunction .minecraft {
+   color: #3c47e6;
+}
+
+.mcfunction .number {
+   color: #e06838;
+   font-weight: bold;
+}
+
+.mcfunction .bracket {
+   color: #05cc94;
+   font-weight: bold;
+}
+
+.mcfunction .error {
+   background-color: #d65b3f;
+   border-radius: 2px;
+}
+
+.mcfunction .light-error {
+   background-color: #52503a;
+   border-radius: 2px;
+   text-decoration: underline;
+   text-decoration-style: dotted;
+}
+
+.mcfunction .function {
+   color: #53a600;
+}
+
+.mcfunction .comment {
+   color: #646363;
+}
+
+.mcfunction .var {
+   color: #caa536;
+}
+
+.mcfunction .string {
+   color: #e6c07b;
+}
