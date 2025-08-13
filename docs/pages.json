@@ -29,7 +29,14 @@
       {
         "id": "01-3",
         "title": "01-3 데이터 팩 만들기",
-        "path": "01/3.md"
+        "path": "01/3.md",
+        "children": [
+          {
+            "id": "01-3-1",
+            "title": "01-3-1 pack.mcmeta",
+            "path": "01/3-1.md"
+          }
+        ]
       },
       {
         "id": "null",
@@ -128,6 +135,55 @@
         "id": "03-7",
         "title": "03-7 weather_check",
         "path": "03/7.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "title": "제4 장 루트 테이블의 기초",
+    "path": "04/1.md",
+    "children": [
+      {
+        "id": "04-1",
+        "title": "04-1 루트 테이블이란?",
+        "path": "04/1.md"
+      },
+      {
+        "id": "04-2",
+        "title": "04-2 entries",
+        "path": "04/2.md"
+      },
+      {
+        "id": "04-3",
+        "title": "04-3 functions",
+        "path": "04/3.md",
+        "children": [
+          {
+            "id": "04-3-1",
+            "title": "04-3-1 set",
+            "path": "04/3-1.md"
+          },
+          {
+            "id": "04-3-2",
+            "title": "04-3-2 copy",
+            "path": "04/3-2.md"
+          },
+          {
+            "id": "04-3-3",
+            "title": "04-3-3 etc",
+            "path": "04/3-3.md"
+          }
+        ]
+      },
+      {
+        "id": "04-4",
+        "title": "04-4 conditions",
+        "path": "04/4.md"
       },
       {
         "id": "null",
