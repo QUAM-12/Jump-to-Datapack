@@ -84,6 +84,8 @@ body {
 }
 
 .page {
+   white-space: nowrap;
+   display: inline-block;
    padding: 8px;
    border-radius: 8px;
    cursor: pointer
@@ -130,9 +132,94 @@ body {
    /* 부드러운 효과 추가 */
 }
 
+.btn-default {
+   position: relative;
+   /* 툴팁 위치 계산을 위해 필수 */
+   margin-left: 12px;
+   padding: 4px 8px;
+   font-size: 12px;
+   background: var(--accent, #4cafef);
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+.btn-default:hover {
+   background: var(--accent-hover, #3b9bd6);
+}
+
+/* 툴팁 기본 상태 */
+.btn-default::after {
+   content: "점프 투 데이터 팩";
+   /* 보여줄 텍스트 */
+   position: absolute;
+   top: 125%;
+   /* 버튼 위에 표시 */
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   padding: 4px 8px;
+   border-radius: 4px;
+   font-size: 11px;
+   white-space: nowrap;
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity 0.2s;
+}
+
+/* 마우스 올렸을 때 표시 */
+.btn-default:hover::after {
+   opacity: 1;
+}
+
+
 .btn:hover {
    background: rgba(79, 70, 229, 0.7);
    /* 살짝 투명해진 색으로 변경 */
+}
+
+.btn-advanced {
+   position: relative;
+   /* 툴팁 위치 계산을 위해 필수 */
+   margin-left: 12px;
+   padding: 4px 8px;
+   font-size: 12px;
+   background: var(--accent, #4cafef);
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
+.btn-advanced:hover {
+   background: var(--accent-hover, #3b9bd6);
+}
+
+/* 툴팁 기본 상태 */
+.btn-advanced::after {
+   content: "데이터 팩 날개 달기";
+   /* 보여줄 텍스트 */
+   position: absolute;
+   top: 125%;
+   /* 버튼 위에 표시 */
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   padding: 4px 8px;
+   border-radius: 4px;
+   font-size: 11px;
+   white-space: nowrap;
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity 0.2s;
+}
+
+/* 마우스 올렸을 때 표시 */
+.btn-advanced:hover::after {
+   opacity: 1;
 }
 
 /* markdown styles */

@@ -1,7 +1,4 @@
-// --- 설정 ---
-// docs/pages.json 에서 페이지 목록을 불러온다. pages.json 예:
-// [{"id":"welcome","title":"환영합니다","path":"welcome.md"}, ...]
-const PAGES_JSON = 'docs/pages.json';
+const PAGES_JSON = 'docs2/pages.json';
 
 const renderer = new marked.Renderer();
 
@@ -64,11 +61,11 @@ async function loadIndex() {
    } catch (e) {
       document.getElementById('article').innerHTML = `
          <h1>설정 안내</h1>
-         <p>docs/pages.json 파일을 만들어 페이지 목록을 추가하세요.</p>
+         <p>docs2/pages.json 파일을 만들어 페이지 목록을 추가하세요.</p>
          <pre>[
             {&quot;id&quot;:&quot;welcome&quot;, &quot;title&quot;:&quot;환영합니다&quot;, &quot;path&quot;:&quot;welcome.md&quot;}
          ]</pre>
-         <p>그리고 docs/welcome.md 같은 파일을 추가하세요.</p>
+         <p>그리고 docs2/welcome.md 같은 파일을 추가하세요.</p>
       `;
    }
 }
@@ -143,7 +140,7 @@ async function loadPage(id) {
    }
 
    try {
-      const r = await fetch('docs/' + meta.path, { cache: 'no-store' });
+      const r = await fetch('docs2/' + meta.path, { cache: 'no-store' });
       if (!r.ok) throw new Error('md not found');
       const txt = await r.text();
 
@@ -172,9 +169,9 @@ function renderMd(md) {
 
             let id = href;
 
-            // 절대 경로 '/docs/' 제거
-            if (id.startsWith('/docs/')) {
-               id = id.slice('/docs/'.length);
+            // 절대 경로 '/docs2/' 제거
+            if (id.startsWith('/docs2/')) {
+               id = id.slice('/docs2/'.length);
             }
 
             id = id.replace(/\.md$/, ''); // 확장자 제거
