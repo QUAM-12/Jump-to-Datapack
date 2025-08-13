@@ -1,0 +1,26 @@
+[
+  {
+    "id": "welcome",
+    "title": "환영합니다.",
+    "path": "welcome.md",
+    "children": [
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "external",
+    "title": "외부 기능",
+    "path": "external/main.md",
+    "children": [
+      {
+        "id": "source_code",
+        "title": "마인크래프트 소스 코드 보기",
+        "path": "external/source_code.md"
+      }
+    ]
+  }
+]
