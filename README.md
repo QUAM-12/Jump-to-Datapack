@@ -1,3 +1,15 @@
+# 점프 투 데이터 팩(Jump-to-Datapack)
+
+<div align="center"><img src="assets/icon.png" height="256"/></div>
+
+점프 투 데이터 팩(`Jump to Datapack`)은 코딩 입문서  
+[[점프 투 자바](https://wikidocs.net/book/31)], [[점프 투 파이썬](https://wikidocs.net/book/1)]에서 영감을 받아,
+
+데이터 팩을 쉽게 배우고 활용할 수 있도록 제작한 프로젝트입니다.  
+외에도 데이터 팩/마인크래프트와 관련한 유용한 도구도 포함되어 있습니다.
+
+<br/>
+
 ## 주소
 > [[Jump-to-Datapack](https://quam-12.github.io/Jump-to-Datapack/)]
 
@@ -18,7 +30,7 @@
   pip install packaging
   ```
 
-
+<br/>
 
 ## 서버 자동 생성기
 > [[server](util/server/main.py)]
@@ -45,7 +57,7 @@
   pip install nbtlib
   ```
 
-
+<br/>
 
 ## 데이터 자동 생성기
 > [[data_generator](util/data_generator.py)]

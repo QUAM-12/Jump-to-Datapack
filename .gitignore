@@ -27,3 +27,6 @@ replay_pid*
 .kotlin/
 .vscode/
 .DS_Store/
+
+# folder
+__pycache__/
