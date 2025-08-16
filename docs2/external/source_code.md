@@ -29,5 +29,6 @@ java -jar MinecraftDecompiler.jar --version 1.21.8 --side CLIENT --decompile fer
 
 # 코드 보기
 
-[[IntelliJ](https://www.jetbrains.com/idea/)]나, [[Visual Studio Code](https://code.visualstudio.com/)]로 파일을 열어, 코드를 확인할 수 있습니다.
+[[IntelliJ](https://www.jetbrains.com/idea/)]나, [[Visual Studio Code](https://code.visualstudio.com/)]로 파일을 열어,
+코드를 확인할 수 있습니다.
 - Visual Studio Code는 별도의 확장이 필요합니다.

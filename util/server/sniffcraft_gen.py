@@ -1,6 +1,7 @@
 # from main.py
 # 스니크래프트 설치용 파이썬
 
+import json
 import os
 import platform
 
@@ -56,14 +57,23 @@ def config(DIRECTORY):
    
    print(f"\n[INFO] 스니크래프트 설정 파일 다운로드 중...")
 
-   try:
-      with requests.get(url, stream=True) as r:
-         r.raise_for_status()
-         with open(file_path, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
+   # 파일 다운로드
+   with requests.get(url, stream=True) as r:
+      r.raise_for_status()
+      with open(file_path, "wb") as f:
+         for chunk in r.iter_content(chunk_size=8192):
                if chunk:
                   f.write(chunk)
-      print(f"[INFO] 설정 파일 다운로드 완료: {file_path}")
-   except Exception as e:
-      print(f"[ERROR] 설정 파일 다운로드 실패: {e}")
-      return None
+   print(f"[INFO] 설정 파일 다운로드 완료: {file_path}")
+
+   # conf.json 수정
+   with open(file_path, "r", encoding="utf-8") as f:
+      data = json.load(f)
+
+   if "LogToTxtFile" in data:
+      data["LogToTxtFile"] = False
+
+   with open(file_path, "w", encoding="utf-8") as f:
+      json.dump(data, f, indent=4, ensure_ascii=False)
+
+   print("[INFO] LogToTxtFile 옵션을 false로 변경했습니다.")

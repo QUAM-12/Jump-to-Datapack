@@ -12,13 +12,47 @@
     ]
   },
   {
+    "id": "system",
+    "title": "시스템",
+    "path": "system/main.md",
+    "children": [
+      {
+        "id": "tick",
+        "title": "tick(틱)",
+        "path": "system/tick.md"
+      }
+    ]
+  },
+  {
+    "id": "math",
+    "title": "수학",
+    "path": "math/main.md",
+    "children": [
+      {
+        "id": "trig",
+        "title": "삼각함수",
+        "path": "math/trig.md"
+      },
+      {
+        "id": "min_max",
+        "title": "최소와 최대값 탐색",
+        "path": "math/min_max.md"
+      }
+    ]
+  },
+  {
     "id": "external",
     "title": "외부 기능",
     "path": "external/main.md",
     "children": [
       {
+        "id": "data_generator",
+        "title": "내부 데이터 보기",
+        "path": "external/data_generator.md"
+      },
+      {
         "id": "source_code",
-        "title": "마인크래프트 소스 코드 보기",
+        "title": "소스 코드 보기",
         "path": "external/source_code.md"
       }
     ]
