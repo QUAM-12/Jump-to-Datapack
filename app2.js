@@ -20,12 +20,19 @@ renderer.code = (token) => {
    const codeText = token.text || '';
    const lang = token.lang || (token.langInfo ? token.langInfo.split(' ')[0] : '');
 
+   // mcfunction 전용
    if ((lang || '').toLowerCase() === 'mcfunction') {
       const lines = codeText.split('\n').map(line => mclangHighlight(line));
       const highlighted = lines.join('\n');
       return `<pre><code class="mcfunction">${highlighted}</code></pre>`;
    }
 
+   // mermaid 전용
+   if ((lang || '').toLowerCase() === 'mermaid') {
+      return `<div class="mermaid">${codeText}</div>`;
+   }
+
+   // 기본 처리
    const escaped = codeText
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -34,6 +41,7 @@ renderer.code = (token) => {
    const cls = lang ? `language-${lang}` : '';
    return `<pre><code class="${cls}">${escaped}</code></pre>`;
 };
+
 
 function mdToHtml(md) {
    return marked.parse(md, {
@@ -160,6 +168,15 @@ function renderMd(md) {
       hljs.highlightElement(block);
    });
 
+   // Mermaid 렌더링
+   if (window.mermaid) {
+      try {
+         mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      } catch (e) {
+         console.error("Mermaid 렌더링 오류:", e);
+      }
+   }
+
    // 내부 링크 클릭 이벤트 처리
    document.getElementById('article').querySelectorAll('a').forEach(a => {
       const href = a.getAttribute('href');
@@ -175,7 +192,7 @@ function renderMd(md) {
             }
 
             id = id.replace(/\.md$/, ''); // 확장자 제거
-            id = id.replace(/\//g, '-');  // 슬래시를 하이픈으로 변환
+            id = id.replace(/\//g, '-');  // 슬래시 -> 하이픈
 
             console.log(`[DEBUG] 내부 링크 클릭: href="${href}", 변환된 id="${id}"`);
 
