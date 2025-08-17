@@ -54,6 +54,11 @@
         "id": "source_code",
         "title": "소스 코드 보기",
         "path": "external/source_code.md"
+      },
+      {
+        "id": "sniffcraft",
+        "title": "SniffCraft(스니크래프트)",
+        "path": "external/sniffcraft.md"
       }
     ]
   }
