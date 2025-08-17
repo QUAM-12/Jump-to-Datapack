@@ -8,15 +8,13 @@
 데이터 팩을 쉽게 배우고 활용할 수 있도록 제작한 프로젝트입니다.  
 외에도 데이터 팩/마인크래프트와 관련한 유용한 도구도 포함되어 있습니다.
 
-<br/>
-
 ## 주소
 > [[Jump-to-Datapack](https://quam-12.github.io/Jump-to-Datapack/)]
 
-
+<br/>
 
 ## 데이터 팩 자동 생성기
-> [[generator](util/datapack_gen.py)]
+> [[generator.py](util/datapack_gen.py)]
 
 ### 사용법
 1. `Releases`에서 `datapack_generator.zip` 파일 다운로드
@@ -33,7 +31,7 @@
 <br/>
 
 ## 서버 자동 생성기
-> [[server](util/server/main.py)]
+> [[server.py](util/server/main.py)]
 
 ### 사용법
 1. `Releases`에서 `server_generator.zip` 파일 다운로드
@@ -60,7 +58,7 @@
 <br/>
 
 ## 데이터 자동 생성기
-> [[data_generator](util/data_generator.py)]
+> [[data_generator.py](util/data_generator.py)]
 
 ### 사용법
 1. `Releases`에서 `data_generator.zip` 파일 다운로드
