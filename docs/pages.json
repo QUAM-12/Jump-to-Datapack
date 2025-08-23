@@ -191,5 +191,39 @@
         "path": "null.md"
       }
     ]
+  },
+  {
+    "id": "05",
+    "title": "제5 장 발전과제의 기초",
+    "path": "05/1.md",
+    "children": [
+      {
+        "id": "05-1",
+        "title": "05-1 발전과제란?",
+        "path": "05/1.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "title": "제6 장 인챈트의 기초",
+    "path": "06/1.md",
+    "children": [
+      {
+        "id": "06-1",
+        "title": "06-1 인챈트란?",
+        "path": "06/1.md"
+      },
+      {
+        "id": "null",
+        "title": "",
+        "path": "null.md"
+      }
+    ]
   }
 ]

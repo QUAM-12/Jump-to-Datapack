@@ -2,8 +2,28 @@
   {
     "id": "welcome",
     "title": "환영합니다.",
-    "path": "welcome.md",
+    "path": "welcome.md"
+  },
+  {
+    "id": "00",
+    "title": "핵심(Core)",
+    "path": "00/0.md",
     "children": [
+      {
+        "id": "00-1",
+        "title": "00-1 컨텍스트(context)",
+        "path": "00/1.md"
+      },
+      {
+        "id": "00-2",
+        "title": "00-2 위치와 방향",
+        "path": "00/2.md"
+      },
+      {
+        "id": "00-3",
+        "title": "00-3 선택자",
+        "path": "00/3.md"
+      },
       {
         "id": "null",
         "title": "",
@@ -37,6 +57,16 @@
         "id": "min_max",
         "title": "최소와 최대값 탐색",
         "path": "math/min_max.md"
+      },
+      {
+        "id": "geometry",
+        "title": "기하학",
+        "path": "math/geometry.md"
+      },
+      {
+        "id": "floating_error",
+        "title": "부동소수점 오류",
+        "path": "math/floating_error.md"
       }
     ]
   },
