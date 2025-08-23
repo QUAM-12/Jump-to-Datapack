@@ -1,6 +1,6 @@
 # 점프 투 데이터 팩(Jump-to-Datapack)
 
-<div align="center"><img src="assets/icon.png" height="128"/></div>
+<div align="center"><img src="assets/icon.png" height="256"/></div>
 
 점프 투 데이터 팩(`Jump to Datapack`)은 코딩 입문서  
 [[점프 투 자바](https://wikidocs.net/book/31)], [[점프 투 파이썬](https://wikidocs.net/book/1)]에서 영감을 받아,
