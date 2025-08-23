@@ -27,7 +27,7 @@ renderer.code = (token) => {
       return `<pre><code class="mcfunction">${highlighted}</code></pre>`;
    }
 
-   // mermaid 전용
+   // mermaid
    if ((lang || '').toLowerCase() === 'mermaid') {
       return `<div class="mermaid">${codeText}</div>`;
    }

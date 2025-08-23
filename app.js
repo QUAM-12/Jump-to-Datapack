@@ -29,6 +29,11 @@ renderer.code = (token) => {
       return `<pre><code class="mcfunction">${highlighted}</code></pre>`;
    }
 
+   // mermaid
+   if ((lang || '').toLowerCase() === 'mermaid') {
+      return `<div class="mermaid">${codeText}</div>`;
+   }
+
    const escaped = codeText
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -162,6 +167,15 @@ function renderMd(md) {
    document.querySelectorAll('pre code:not(.mcfunction)').forEach((block) => {
       hljs.highlightElement(block);
    });
+
+   // Mermaid 렌더링
+   if (window.mermaid) {
+      try {
+         mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      } catch (e) {
+         console.error("Mermaid 렌더링 오류:", e);
+      }
+   }
 
    // 내부 링크 클릭 이벤트 처리
    document.getElementById('article').querySelectorAll('a').forEach(a => {

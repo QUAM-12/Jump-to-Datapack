@@ -289,6 +289,53 @@ pre code {
    white-space: pre;
 }
 
+/*표*/
+.md table {
+   width: 100%;
+   border-collapse: collapse;
+   margin: 1em 0;
+   background: rgba(11, 18, 32, 0.8);
+   /* 카드 느낌 배경 */
+   border-radius: 12px;
+   overflow: hidden;
+   /* 둥근 모서리 적용 */
+}
+
+.md th,
+.md td {
+   padding: 10px 14px;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   font-family: 'D2Coding', monospace;
+   font-size: 0.95em;
+   color: #cfe6ff;
+   text-align: left;
+}
+
+.md th {
+   background: rgba(79, 70, 229, 0.35);
+   font-weight: bold;
+}
+
+.md tr:hover td {
+   background: rgba(79, 70, 229, 0.1);
+}
+
+.md tr:last-child td {
+   border-bottom: none;
+}
+
+/* responsive */
+@media (max-width: 400px) {
+   .md table {
+      font-size: 0.85em;
+   }
+
+   .md th,
+   .md td {
+      padding: 8px 10px;
+   }
+}
+
 /* responsive */
 .menu-toggle {
    display: none;
