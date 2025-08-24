@@ -1,17 +1,19 @@
-// --- 설정 ---
-// docs/pages.json 에서 페이지 목록을 불러온다. pages.json 예:
-// [{"id":"welcome","title":"환영합니다","path":"welcome.md"}, ...]
-const PAGES_JSON = 'docs/pages.json';
+/** 페이지에 따른 다른 docs 표시 */
+const DOCS_ROOT = window.location.pathname.includes('advanced.html') ? 'docs2' : 'docs';
+const PAGES_JSON = `${DOCS_ROOT}/pages.json`;
+
+let currentSearch = ''; /** 현재 검색어 */
 
 const renderer = new marked.Renderer();
 
+/** 인라인 링크 */
 renderer.link = ({ href, title, text }) => {
    try {
       const domain = new URL(href).origin;
       const faviconUrl = domain + '/favicon.ico';
       return `<a class="link-with-icon" href="${href}" target="_blank" title="${title || href}">
          <img src="${faviconUrl}" alt="icon"
-            onerror="this.onerror=null;this.src='assets/img/default_icon.png';" />
+            onerror="this.onerror=null;this.src='assets/img/spyglass.png';" />
          ${text}
       </a>`;
    } catch {
@@ -19,6 +21,7 @@ renderer.link = ({ href, title, text }) => {
    }
 };
 
+/** 인라인 코드 */
 renderer.code = (token) => {
    const codeText = token.text || '';
    const lang = token.lang || (token.langInfo ? token.langInfo.split(' ')[0] : '');
@@ -43,6 +46,7 @@ renderer.code = (token) => {
    return `<pre><code class="${cls}">${escaped}</code></pre>`;
 };
 
+/** .md -> html */
 function mdToHtml(md) {
    return marked.parse(md, {
       renderer,
@@ -51,11 +55,11 @@ function mdToHtml(md) {
    });
 }
 
-/* 페이지 목록 관리 */
-let pages = []; // {id,title,path,content}
+/**  페이지 목록 관리 */
+let pages = [];
 let activeId = null;
 
-/* 목록 불러오기 */
+/** 목록 불러오기 */
 async function loadIndex() {
    try {
       const res = await fetch(PAGES_JSON, { cache: 'no-store' });
@@ -67,17 +71,11 @@ async function loadIndex() {
 
       if (pages.length) loadPage(pages[0].id);
    } catch (e) {
-      document.getElementById('article').innerHTML = `
-         <h1>설정 안내</h1>
-         <p>docs/pages.json 파일을 만들어 페이지 목록을 추가하세요.</p>
-         <pre>[
-            {&quot;id&quot;:&quot;welcome&quot;, &quot;title&quot;:&quot;환영합니다&quot;, &quot;path&quot;:&quot;welcome.md&quot;}
-         ]</pre>
-         <p>그리고 docs/welcome.md 같은 파일을 추가하세요.</p>
-      `;
+      return;
    }
 }
 
+/** 페이지 리스트 */
 function renderList(list, container = null, level = 0) {
    if (!container) {
       container = document.getElementById('pages');
@@ -88,7 +86,7 @@ function renderList(list, container = null, level = 0) {
       d.className = 'page';
       d.textContent = p.title;
       d.dataset.id = p.id;
-      d.style.marginLeft = level * 16 + 'px'; // 노드별 들여쓰기
+      d.style.marginLeft = level * 16 + 'px';
 
       d.onclick = () => {
          if (p.content && p.content.trim() === '') {
@@ -129,16 +127,16 @@ function findTopParent(list, id) {
    return null;
 }
 
-
+/** 페이지 불러오기 */
 async function loadPage(id) {
    const meta = findPageById(pages, id);
    if (!meta) return;
    activeId = id;
-   renderList(pages);
+   /** 검색 중 */
+   const listToRender = currentSearch ? searchPages(pages, currentSearch) : pages;
+   renderList(listToRender);
 
-   // 최상위 부모 노드 찾기
    const topParent = findTopParent(pages, id) || meta;
-
    document.getElementById('crumb').textContent = topParent.title;
 
    if (meta.content) {
@@ -148,7 +146,7 @@ async function loadPage(id) {
    }
 
    try {
-      const r = await fetch('docs/' + meta.path, { cache: 'no-store' });
+      const r = await fetch(`${DOCS_ROOT}/` + meta.path, { cache: 'no-store' });
       if (!r.ok) throw new Error('md not found');
       const txt = await r.text();
 
@@ -160,57 +158,132 @@ async function loadPage(id) {
       document.getElementById('article').innerHTML = '<h2>문서를 불러올 수 없습니다</h2><p>' + e.message + '</p>';
    }
 }
+/** 검색어 강조 */
+function highlightSearch(element, search) {
+   if (!search) return;
 
+   const regex = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+
+   const walk = node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+         const match = node.textContent.match(regex);
+         if (match) {
+            const span = document.createElement('span');
+            span.innerHTML = node.textContent.replace(regex, m => `<mark>${m}</mark>`);
+            node.replaceWith(span);
+         }
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'SCRIPT') {
+         node.childNodes.forEach(walk);
+      }
+   };
+
+   walk(element);
+}
+/** 페이지 렌더링 */
 function renderMd(md) {
-   document.getElementById('article').innerHTML = mdToHtml(md);
+   const container = document.getElementById('article');
+   container.innerHTML = mdToHtml(md);
 
-   document.querySelectorAll('pre code:not(.mcfunction)').forEach((block) => {
+   // 코드 하이라이트
+   container.querySelectorAll('pre code:not(.mcfunction)').forEach(block => {
       hljs.highlightElement(block);
    });
 
    // Mermaid 렌더링
    if (window.mermaid) {
       try {
-         mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+         mermaid.init(undefined, container.querySelectorAll('.mermaid'));
       } catch (e) {
          console.error("Mermaid 렌더링 오류:", e);
       }
    }
 
-   // 내부 링크 클릭 이벤트 처리
-   document.getElementById('article').querySelectorAll('a').forEach(a => {
+   // 검색어 강조
+   highlightSearch(container, currentSearch);
+
+   container.querySelectorAll('a').forEach(a => {
       const href = a.getAttribute('href');
       if (href && !href.startsWith('http') && !href.startsWith('#')) {
          a.addEventListener('click', e => {
             e.preventDefault();
-
             let id = href;
-
-            // 절대 경로 '/docs/' 제거
-            if (id.startsWith('/docs/')) {
-               id = id.slice('/docs/'.length);
+            if (id.startsWith(`/${DOCS_ROOT}/`)) {
+               id = id.slice((`/${DOCS_ROOT}/`).length);
             }
-
-            id = id.replace(/\.md$/, ''); // 확장자 제거
-            id = id.replace(/\//g, '-');  // 슬래시를 하이픈으로 변환
-
-            console.log(`[DEBUG] 내부 링크 클릭: href="${href}", 변환된 id="${id}"`);
-
+            id = id.replace(/\.md$/, '').replace(/\//g, '-');
             loadPage(id);
          });
       }
    });
 }
 
-// 검색
-document.getElementById('q').addEventListener('input', async (e) => {
-   const q = e.target.value.trim().toLowerCase();
-   if (!q) { renderList(pages); return; }
+/** 페이지 실제 검색 */
+async function preloadContents(list) {
+   for (const p of list) {
+      if (!p.content) {
+         try {
+            const r = await fetch(`${DOCS_ROOT}/${p.path}`, { cache: 'no-store' });
+            p.content = r.ok ? await r.text() : '';
+         } catch {
+            p.content = '';
+         }
+      }
+      if (p.children) {
+         await preloadContents(p.children);
+      }
+   }
+}
+function searchPages(list, q) {
+   const result = [];
 
-   // 아직 로드되지 않은 문서는 미리 fetch 하지 않음
-   const filtered = pages.filter(p => p.title.toLowerCase().includes(q));
+   for (const p of list) {
+      const matchTitle = p.title.toLowerCase().includes(q);
+      const matchContent = p.content ? p.content.toLowerCase().includes(q) : false;
+
+      if (matchTitle || matchContent) {
+         result.push({
+            ...p,
+            children: p.children ? searchPages(p.children, q) : []
+         });
+      } else if (p.children) {
+         const filteredChildren = searchPages(p.children, q);
+         if (filteredChildren.length) {
+            result.push(...filteredChildren);
+         }
+      }
+   }
+
+   return result;
+}
+/** 실제 페이지 검색 */
+document.getElementById('q').addEventListener('input', async e => {
+   currentSearch = e.target.value.trim().toLowerCase();
+   if (!currentSearch) {
+      renderList(pages);
+      if (pages[0]?.content) renderMd(pages[0].content);
+      return;
+   }
+
+   await preloadContents(pages);
+   const filtered = searchPages(pages, currentSearch);
    renderList(filtered);
+
+   const activePage = findPageById(pages, activeId);
+   if (activePage?.content) renderMd(activePage.content);
 });
+
+document.addEventListener('keydown', (e) => {
+   const tag = e.target.tagName.toLowerCase();
+   if (tag === 'input' || tag === 'textarea') return;
+
+   /** 슬래시 키로 검색 */
+   if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      e.preventDefault();
+      const searchInput = document.getElementById('q');
+      if (searchInput) searchInput.focus();
+   }
+});
+
 
 const advancedBtn = document.getElementById('advancedBtn');
 if (advancedBtn) {
@@ -226,15 +299,15 @@ if (defaultBtn) {
    });
 }
 
-// 메뉴 버튼
+/** 메뉴 버튼 */
 document.querySelector('.menu-toggle').addEventListener('click', () => {
    document.querySelector('.sidebar').classList.toggle('open');
 });
 
-// 홈 버튼
+/** 홈 버튼 */
 document.getElementById('homeBtn').addEventListener('click', () => { if (pages[0]) loadPage(pages[0].id); });
 
 function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
-// 시작
+/** 시작 */
 loadIndex();

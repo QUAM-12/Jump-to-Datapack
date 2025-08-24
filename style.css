@@ -66,7 +66,7 @@ body {
    flex: 1;
    padding: 8px;
    border-radius: 8px;
-   border: 1px solid rgba(255, 255, 255, 0.04);
+   border: 1px solid rgba(255, 255, 255, 0.25);
    background: transparent;
    color: inherit
 }
@@ -96,7 +96,7 @@ body {
 }
 
 .page.active {
-   background: linear-gradient(90deg, rgba(79, 70, 229, 0.15), rgba(79, 70, 229, 0.06));
+   background: linear-gradient(90deg, rgba(79, 70, 229, 0.4), rgba(79, 70, 229, 0.06));
    border-left: 3px solid var(--accent);
    padding-left: 6px
 }
@@ -129,12 +129,10 @@ body {
    color: white;
    cursor: pointer;
    transition: background-color 0.3s ease;
-   /* 부드러운 효과 추가 */
 }
 
 .btn-default {
    position: relative;
-   /* 툴팁 위치 계산을 위해 필수 */
    margin-left: 12px;
    padding: 4px 8px;
    font-size: 12px;
@@ -143,41 +141,7 @@ body {
    border: none;
    border-radius: 4px;
    cursor: pointer;
-}
-
-.btn-default:hover {
-   background: var(--accent-hover, #3b9bd6);
-}
-
-/* 툴팁 기본 상태 */
-.btn-default::after {
-   content: "점프 투 데이터 팩";
-   /* 보여줄 텍스트 */
-   position: absolute;
-   top: 125%;
-   /* 버튼 위에 표시 */
-   left: 50%;
-   transform: translateX(-50%);
-   background: rgba(0, 0, 0, 0.8);
-   color: white;
-   padding: 4px 8px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
-   opacity: 0;
-   pointer-events: none;
-   transition: opacity 0.2s;
-}
-
-/* 마우스 올렸을 때 표시 */
-.btn-default:hover::after {
-   opacity: 1;
-}
-
-
-.btn:hover {
-   background: rgba(79, 70, 229, 0.7);
-   /* 살짝 투명해진 색으로 변경 */
+   transition: background-color 0.3s ease;
 }
 
 .btn-advanced {
@@ -191,19 +155,48 @@ body {
    border: none;
    border-radius: 4px;
    cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+   background: rgba(79, 70, 229, 0.7);
+}
+
+.btn-default:hover {
+   background: var(--accent-hover, #3b9bd6);
 }
 
 .btn-advanced:hover {
    background: var(--accent-hover, #3b9bd6);
 }
 
+/* 마우스 올렸을 때 표시 */
+.btn-default:hover::after {
+   opacity: 1;
+}
+
 /* 툴팁 기본 상태 */
 .btn-advanced::after {
    content: "데이터 팩 날개 달기";
-   /* 보여줄 텍스트 */
    position: absolute;
    top: 125%;
-   /* 버튼 위에 표시 */
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   padding: 4px 8px;
+   border-radius: 4px;
+   font-size: 11px;
+   white-space: nowrap;
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity 0.2s;
+}
+
+.btn-default::after {
+   content: "점프 투 데이터 팩";
+   position: absolute;
+   top: 125%;
    left: 50%;
    transform: translateX(-50%);
    background: rgba(0, 0, 0, 0.8);
@@ -229,7 +222,7 @@ body {
 }
 
 .md h2 {
-   font-size: 20px;
+   font-size: 23px;
    margin: 10px 0
 }
 
@@ -278,7 +271,6 @@ pre {
    font-family: 'D2Coding', monospace;
    font-size: 1em;
    color: inherit;
-   /* 텍스트 색 유지 */
 }
 
 pre code {
@@ -289,16 +281,15 @@ pre code {
    white-space: pre;
 }
 
-/*표*/
+/* 표 */
 .md table {
-   width: 100%;
+   width: 80%;
+   max-width: 800px;
    border-collapse: collapse;
    margin: 1em 0;
    background: rgba(11, 18, 32, 0.8);
-   /* 카드 느낌 배경 */
    border-radius: 12px;
    overflow: hidden;
-   /* 둥근 모서리 적용 */
 }
 
 .md th,
@@ -312,12 +303,12 @@ pre code {
 }
 
 .md th {
-   background: rgba(79, 70, 229, 0.35);
+   background: rgba(79, 70, 229, 0.45);
    font-weight: bold;
 }
 
 .md tr:hover td {
-   background: rgba(79, 70, 229, 0.1);
+   background: rgba(100, 90, 229, 0.25);
 }
 
 .md tr:last-child td {
@@ -339,7 +330,6 @@ pre code {
 /* responsive */
 .menu-toggle {
    display: none;
-   /* 기본 숨김 */
    position: fixed;
    top: 12px;
    left: 12px;
@@ -350,7 +340,6 @@ pre code {
    border-radius: 6px;
    cursor: pointer;
    z-index: 1000;
-   /* 사이드바 위에 나오게 */
    user-select: none;
    font-size: 18px;
    line-height: 1;
