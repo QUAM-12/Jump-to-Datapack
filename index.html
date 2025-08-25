@@ -6,22 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>점프 투 데이터 팩</title>
   <link rel="icon" href="assets/img/jump.png" />
+
+  <!-- 스타일 -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
-
   <link rel="stylesheet" href="javascript-Syntax-Highlighter-for-Minecraft-functions-master/code.css" />
 </head>
 
 <body>
-  <button class="menu-toggle">☰ Menu</button>
+  <button class="btn menu-toggle">☰ Menu</button>
 
   <div class="app">
+    <!-- 사이드 바 -->
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <img src="assets/img/jump.png" width="16px" height="16px" alt="점프 투 데이터 팩 로고" />
         <span>점프 투 데이터 팩</span>
-        <button id="advancedBtn" class="btn-advanced">심화</button>
+        <button id="advancedBtn" class="btn btn-advanced">심화</button>
       </div>
 
       <div class="search"><input id="q" placeholder="/ 키로 빠른 검색 혹은 직접 검색" /></div>
@@ -30,9 +32,10 @@
         넣으세요.</div>
     </aside>
 
+    <!-- 메인 콘텐츠 -->
     <main class="content">
       <div class="card">
-        <div class="meta">
+        <div class="home">
           <button class="btn" id="homeBtn">Home</button>
           <div id="crumb" style="color:var(--muted)"></div>
           <div style="flex:1"></div>
@@ -43,6 +46,8 @@
       </div>
     </main>
   </div>
+
+  <!-- 스크립트 -->
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
     window.mermaid = mermaid;

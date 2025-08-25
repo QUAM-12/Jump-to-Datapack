@@ -2,7 +2,7 @@
 const DOCS_ROOT = window.location.pathname.includes('advanced.html') ? 'docs2' : 'docs';
 const PAGES_JSON = `${DOCS_ROOT}/pages.json`;
 
-let currentSearch = ''; /** 현재 검색어 */
+let currentSearch = '';
 
 const renderer = new marked.Renderer();
 
@@ -13,11 +13,14 @@ renderer.link = ({ href, title, text }) => {
       const faviconUrl = domain + '/favicon.ico';
       return `<a class="link-with-icon" href="${href}" target="_blank" title="${title || href}">
          <img src="${faviconUrl}" alt="icon"
-            onerror="this.onerror=null;this.src='assets/img/spyglass.png';" />
+            onerror="this.onerror=null;this.src='assets/img/beacon.png';" />
          ${text}
       </a>`;
    } catch {
-      return `<a class="link-with-icon" href="${href}" target="_blank" title="${title || href}">${text}</a>`;
+      return `<a class="link-with-icon" href="${href}" title="${title || href}">
+         <img src="assets/img/spyglass.png" alt="icon" />
+         ${text}
+      </a>`;
    }
 };
 

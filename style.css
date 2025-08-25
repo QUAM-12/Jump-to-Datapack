@@ -1,22 +1,17 @@
-@font-face {
-   font-family: 'PyeongChang-Bold';
-   src: url('/fonts/PyeongChang-Bold.woff2') format('woff2');
-   font-weight: 700;
-   font-style: normal
-}
-
-@font-face {
-   font-family: 'D2Coding';
-   src: url('/fonts/D2Coding.woff2') format('woff2');
-   font-weight: normal;
-   font-style: normal;
-}
-
 :root {
    --accent: #4f46e5;
    --bg: #0f172a;
    --card: #0b1220;
    --muted: #94a3b8;
+
+   --table-bg: rgba(11, 18, 32, 0.8);
+   --th-bg: rgba(79, 70, 229, 0.45);
+   --hover-bg: rgba(100, 90, 229, 0.25);
+   --border-color: rgba(255, 255, 255, 0.1);
+
+   --text-color: var(--text-color);
+   --font-family: 'D2Coding';
+
    color-scheme: dark
 }
 
@@ -33,289 +28,70 @@ body {
    background: linear-gradient(180deg, #071025 0%, #07112a 100%);
 }
 
+
+/* 폰트 */
+@font-face {
+   font-family: 'PyeongChang-Bold';
+   src: url('/fonts/PyeongChang-Bold.woff2') format('woff2');
+   font-weight: 700;
+   font-style: normal
+}
+
+@font-face {
+   font-family: 'D2Coding';
+   src: url('/fonts/D2Coding.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+}
+
 .app {
    display: grid;
    grid-template-columns: 260px 1fr;
    gap: 18px;
    padding: 18px;
    height: 100vh;
-   width: 100%;
 }
 
-.sidebar {
-   background: linear-gradient(to bottom,
-         rgba(255, 255, 255, 0.01),
-         rgba(255, 255, 255, 0.1));
-   border-radius: 12px;
-   padding: 14px;
-   overflow: auto
-}
 
-.brand {
-   font-weight: 700;
-   color: var(--muted);
-   margin-bottom: 12px
-}
+/* 사이드 바 */
+.sidebar { border-radius: 12px;   padding: 14px;   overflow: auto}
 
-.search {
-   display: flex;
-   margin-bottom: 16px
-}
+.brand { font-weight: 700;   color: var(--muted);   margin-bottom: 12px}
+.search { display: flex;   margin-bottom: 16px}
+.search input { flex: 1;   padding: 8px;   border-radius: 8px;   border: 1px solid rgba(255, 255, 255, 0.25);   background: transparent;   color: inherit}
 
-.search input {
-   flex: 1;
-   padding: 8px;
-   border-radius: 8px;
-   border: 1px solid rgba(255, 255, 255, 0.25);
-   background: transparent;
-   color: inherit
-}
+.pages { display: flex; flex-direction: column; gap: 6px; }
+.page { padding: 8px; border-radius: 8px; cursor: pointer; }
+.page:hover { background: rgba(255, 255, 255, 0.2)}
+.page.active { background: linear-gradient(90deg, rgba(79, 70, 229, 0.4), rgba(79, 70, 229, 0.06));   border-left: 3px solid var(--accent);   padding-left: 6px}
 
-.pages {
-   display: flex;
-   flex-direction: column;
-   gap: 6px
-}
 
-.child-pages {
-   margin-left: 16px;
-   border-left: 1px solid rgba(255, 255, 255, 0.1);
-   padding-left: 8px;
-}
+/* 메인 콘텐츠 */
+.content { padding: 22px;   overflow: auto}
+.card { background: rgba(255, 255, 255, 0.02);   padding: 18px;   border-radius: 12px;   max-width: 100%}
 
-.page {
-   white-space: nowrap;
-   display: inline-block;
-   padding: 8px;
-   border-radius: 8px;
-   cursor: pointer
-}
+.md h1 { font-size: 28px;   margin: 12px 0}
+.md h2 { font-size: 23px;   margin: 10px 0}
+.md p { line-height: 1.6;   color: var(--text-color)}
 
-.page:hover {
-   background: rgba(255, 255, 255, 0.2)
-}
+code { background: rgba(135, 131, 120, 0.15);   color: rgba(255, 131, 120, 0.95);   padding: 0.2em 0.4em;   border-radius: 6px;   font-family: 'D2Coding', monospace;   font-size: 0.9em;}
+pre { background: rgba(135, 131, 120, 0.15);   padding: 1em;   border-radius: 8px;   overflow-x: auto;   font-family: 'D2Coding', monospace;   font-size: 1em;   color: inherit;}
+pre code { background: none;   padding: 0;   border-radius: 0;   display: block;   white-space: pre;}
 
-.page.active {
-   background: linear-gradient(90deg, rgba(79, 70, 229, 0.4), rgba(79, 70, 229, 0.06));
-   border-left: 3px solid var(--accent);
-   padding-left: 6px
-}
-
-.content {
-   padding: 22px;
-   overflow: auto
-}
-
-.card {
-   background: rgba(255, 255, 255, 0.02);
-   padding: 18px;
-   border-radius: 12px;
-   max-width: 100%
-}
-
-/* 파일 title */
-.meta {
-   display: flex;
-   gap: 12px;
-   align-items: center;
-   margin-bottom: 12px
-}
-
-.btn {
-   padding: 8px 10px;
-   border-radius: 8px;
-   border: none;
-   background: var(--accent);
-   color: white;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
-}
-
-.btn-default {
-   position: relative;
-   margin-left: 12px;
-   padding: 4px 8px;
-   font-size: 12px;
-   background: var(--accent, #4cafef);
-   color: white;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
-}
-
-.btn-advanced {
-   position: relative;
-   /* 툴팁 위치 계산을 위해 필수 */
-   margin-left: 12px;
-   padding: 4px 8px;
-   font-size: 12px;
-   background: var(--accent, #4cafef);
-   color: white;
-   border: none;
-   border-radius: 4px;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-   background: rgba(79, 70, 229, 0.7);
-}
-
-.btn-default:hover {
-   background: var(--accent-hover, #3b9bd6);
-}
-
-.btn-advanced:hover {
-   background: var(--accent-hover, #3b9bd6);
-}
-
-/* 마우스 올렸을 때 표시 */
-.btn-default:hover::after {
-   opacity: 1;
-}
-
-/* 툴팁 기본 상태 */
-.btn-advanced::after {
-   content: "데이터 팩 날개 달기";
-   position: absolute;
-   top: 125%;
-   left: 50%;
-   transform: translateX(-50%);
-   background: rgba(0, 0, 0, 0.8);
-   color: white;
-   padding: 4px 8px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
-   opacity: 0;
-   pointer-events: none;
-   transition: opacity 0.2s;
-}
-
-.btn-default::after {
-   content: "점프 투 데이터 팩";
-   position: absolute;
-   top: 125%;
-   left: 50%;
-   transform: translateX(-50%);
-   background: rgba(0, 0, 0, 0.8);
-   color: white;
-   padding: 4px 8px;
-   border-radius: 4px;
-   font-size: 11px;
-   white-space: nowrap;
-   opacity: 0;
-   pointer-events: none;
-   transition: opacity 0.2s;
-}
-
-/* 마우스 올렸을 때 표시 */
-.btn-advanced:hover::after {
-   opacity: 1;
-}
-
-/* markdown styles */
-.md h1 {
-   font-size: 28px;
-   margin: 12px 0
-}
-
-.md h2 {
-   font-size: 23px;
-   margin: 10px 0
-}
-
-.md p {
-   line-height: 1.6;
-   color: #cfe6ff
-}
-
-.link-with-icon:hover {
-   opacity: 0.7;
-}
-
-.link-with-icon {
-   display: inline-block;
-   vertical-align: middle;
-   text-decoration: underline;
-   color: rgb(185, 181, 255);
-   transition: opacity 0.2s ease;
-   line-height: 2.0;
-}
-
-.link-with-icon img {
-   width: 20px;
-   height: 20px;
-   margin-right: 6px;
-   vertical-align: middle;
-   display: inline-block;
-}
-
-/* 인라인 코드 스타일 */
-code {
-   background: rgba(135, 131, 120, 0.15);
-   color: rgba(255, 131, 120, 0.95);
-   padding: 0.2em 0.4em;
-   border-radius: 6px;
-   font-family: 'D2Coding', monospace;
-   font-size: 0.9em;
-}
-
-/* 코드 블록 스타일 */
-pre {
-   background: rgba(135, 131, 120, 0.15);
-   padding: 1em;
-   border-radius: 8px;
-   overflow-x: auto;
-   font-family: 'D2Coding', monospace;
-   font-size: 1em;
-   color: inherit;
-}
-
-pre code {
-   background: none;
-   padding: 0;
-   border-radius: 0;
-   display: block;
-   white-space: pre;
-}
+/* 인용 */
+.md blockquote { position: relative;           /* ::before 기준점 */    margin: 0 0 1em 0;    padding: 0.4em 0.5em 0.4em 2.5em; /* 왼쪽 공간 확보 */    border-left: 4px solid var(--accent);    background: var(--card);    border-radius: 10px;    color: var(--text-color);    line-height: 1.6;}
+.md blockquote::before { content: "";   position: absolute;   left: .45em;   top: 50%;   transform: translateY(-50%);   width: 1.5em;   height: 1.5em;   background-image: url('assets/img/light.png'); /* 아이콘 파일 */   background-size: contain;   background-repeat: no-repeat;}
 
 /* 표 */
-.md table {
-   width: 80%;
-   max-width: 800px;
-   border-collapse: collapse;
-   margin: 1em 0;
-   background: rgba(11, 18, 32, 0.8);
-   border-radius: 12px;
-   overflow: hidden;
-}
+.md table { width: 80%;  max-width: 800px;  border-collapse: collapse;  margin: 1em 0;  background: var(--table-bg);  border-radius: 12px;  overflow: hidden;}
 
 .md th,
-.md td {
-   padding: 10px 14px;
-   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-   font-family: 'D2Coding', monospace;
-   font-size: 0.95em;
-   color: #cfe6ff;
-   text-align: left;
-}
+.md td { padding: 10px 14px;   border-bottom: 1px solid var(--border-color);   font-family: var(--font-family);   font-size: 0.95em;   color: var(--text-color);   text-align: left;}
 
-.md th {
-   background: rgba(79, 70, 229, 0.45);
-   font-weight: bold;
-}
+.md th { background: var(--th-bg);   font-weight: bold;}
+.md tr:hover td { background: var(--hover-bg);}
+.md tr:last-child td { border-bottom: none;}
 
-.md tr:hover td {
-   background: rgba(100, 90, 229, 0.25);
-}
-
-.md tr:last-child td {
-   border-bottom: none;
-}
-
-/* responsive */
 @media (max-width: 400px) {
    .md table {
       font-size: 0.85em;
@@ -327,23 +103,60 @@ pre code {
    }
 }
 
-/* responsive */
-.menu-toggle {
-   display: none;
-   position: fixed;
-   top: 12px;
-   left: 12px;
-   background: var(--accent);
-   color: white;
-   border: none;
-   padding: 8px 12px;
-   border-radius: 6px;
-   cursor: pointer;
-   z-index: 1000;
-   user-select: none;
-   font-size: 18px;
-   line-height: 1;
+/* 인라인 링크 아이콘 */
+.link-with-icon:hover { opacity: 0.7;}
+.link-with-icon { display: inline-block;   vertical-align: middle;   text-decoration: underline;   color: rgb(185, 181, 255);   transition: opacity 0.2s ease;   line-height: 2.0;}
+.link-with-icon img { width: 20px;   height: 20px;   margin-right: 6px;   vertical-align: middle;   display: inline-block;}
+
+
+/* 홈 버튼 */
+.home { display: flex;   gap: 12px;   align-items: center;   margin-bottom: 12px}
+
+/* ===========
+   버튼 공통
+=========== */
+
+.btn { padding: 8px 10px;   border-radius: 8px;   border: none;   background: var(--accent);   color: white;   cursor: pointer;   transition: background-color 0.3s ease;}
+.btn:hover {
+   background: rgba(79, 70, 229, 0.7);
 }
+
+/* 난이도 변경 */
+.btn-default { padding: 4px 8px;   border-radius: 4px;   background: var(--accent, #4cafef);   position: relative;   margin-left: 12px;   font-size: 12px;}
+.btn-advanced { padding: 4px 8px;   border-radius: 4px;   background: var(--accent, #4cafef);   position: relative;   margin-left: 12px;   font-size: 12px;}
+
+.btn-default:hover,
+.btn-advanced:hover {
+   background: var(--accent-hover, #3b9bd6);
+}
+
+.btn-advanced:hover::after,
+.btn-default:hover::after {
+   opacity: 1;
+   position: absolute;
+   top: 125%;
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   padding: 4px 8px;
+   border-radius: 4px;
+   font-size: 11px;
+   white-space: nowrap;
+   pointer-events: none;
+   transition: opacity 0.2s;
+}
+
+.btn-advanced:hover::after {
+   content: "데이터 팩 날개 달기";
+}
+.btn-default:hover::after {
+   content: "점프 투 데이터 팩";
+}
+
+
+/* 메뉴 버튼 */
+.menu-toggle { padding: 8px 12px;   border-radius: 6px;   display: none;   position: fixed;   top: 12px;   left: 12px;   z-index: 1000;   user-select: none;   font-size: 18px;   line-height: 1;}
 
 @media (max-width: 800px) {
    .app {
@@ -358,8 +171,7 @@ pre code {
       width: 260px;
       transform: translateX(-320px);
       transition: transform 0.25s ease-in-out;
-      background: rgba(11, 18, 32, 0.95);
-      /* 배경 덮어쓰기 권장 */
+      background: rgba(11, 18, 32, 0.935);
       z-index: 999;
       overflow-y: auto;
    }
